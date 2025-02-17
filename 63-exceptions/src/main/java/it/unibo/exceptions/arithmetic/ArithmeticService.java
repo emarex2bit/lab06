@@ -114,7 +114,7 @@ public final class ArithmeticService {
         final var right = parseDouble(rightOperand);
         final var left = parseDouble(leftOperand);
         final var operand = commandQueue.get(operatorIndex - 1);
-        final var result = switch (operand) {
+        final var result =  switch (operand) {
             case PLUS -> left + right;
             case MINUS -> left - right;
             case TIMES -> left * right;

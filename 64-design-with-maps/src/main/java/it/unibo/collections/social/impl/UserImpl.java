@@ -6,8 +6,9 @@ import java.util.Objects;
 
 /**
  * This is a basic implementation of a {@link User}.
- * This class is completely implemented and can be used as it is.
- *
+ * 
+ * This class is completely mplemented and can be used as it is.
+ * 
  */
 public class UserImpl implements User {
 
@@ -23,7 +24,7 @@ public class UserImpl implements User {
     /**
      * Builds a new UserImpl. An age not specified means that the age field is
      * going to have a value equal to -1.
-     *
+     * 
      * @param name
      *            the user firstname
      * @param surname
@@ -38,7 +39,7 @@ public class UserImpl implements User {
 
     /**
      * Builds a new UserImpl.
-     *
+     * 
      * @param name
      *            the user firstname
      * @param surname

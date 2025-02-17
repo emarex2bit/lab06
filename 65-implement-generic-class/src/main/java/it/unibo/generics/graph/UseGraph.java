@@ -11,12 +11,6 @@ import java.util.Set;
  */
 public final class UseGraph {
 
-    private static final String A = "a";
-    private static final String B = "b";
-    private static final String C = "c";
-    private static final String D = "d";
-    private static final String E = "e";
-
     private UseGraph() {
     }
 
@@ -32,32 +26,32 @@ public final class UseGraph {
     }
 
     private static void testGraph(final Graph<String> graph) {
-        graph.addNode(A);
-        graph.addNode(B);
-        graph.addNode(C);
-        graph.addNode(D);
-        graph.addNode(E);
-        graph.addEdge(A, B);
-        graph.addEdge(B, C);
-        graph.addEdge(C, D);
-        graph.addEdge(D, E);
-        graph.addEdge(C, A);
-        graph.addEdge(E, A);
+        graph.addNode("a");
+        graph.addNode("b");
+        graph.addNode("c");
+        graph.addNode("d");
+        graph.addNode("e");
+        graph.addEdge("a", "b");
+        graph.addEdge("b", "c");
+        graph.addEdge("c", "d");
+        graph.addEdge("d", "e");
+        graph.addEdge("c", "a");
+        graph.addEdge("e", "a");
         /*
          * Should be ["a","b","c","d","e"], in any order
          */
-        assertIsAnyOf(graph.nodeSet(), Set.of(A, B, C, D, E));
+        assertIsAnyOf(graph.nodeSet(), Set.of(splitOnWhiteSpace("a b c d e")));
         /*
          * ["d","a"], in any order
          */
-        assertIsAnyOf(graph.linkedNodes(C), Set.of(A, D));
+        assertIsAnyOf(graph.linkedNodes("c"), Set.of(splitOnWhiteSpace("a d")));
         /*
          * Either the path b,c,a or b,c,d,e,a
          */
         assertIsAnyOf(
-            graph.getPath(B, A),
-            Arrays.asList(B, C, A),
-            Arrays.asList(B, C, D, E, A)
+            graph.getPath("b", "a"),
+            Arrays.asList(splitOnWhiteSpace("b c a")),
+            Arrays.asList(splitOnWhiteSpace("b c d e a"))
         );
     }
 
@@ -69,5 +63,9 @@ public final class UseGraph {
             }
         }
         throw new AssertionError("None of " + Arrays.asList(valid) + " matches " + actual);
+    }
+
+    private static String[] splitOnWhiteSpace(final String target) {
+        return target.split("\\s+");
     }
 }

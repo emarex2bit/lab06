@@ -1,7 +1,6 @@
 /**
- *
+ * 
  */
-
 package it.unibo.collections.social.impl;
 
 import it.unibo.collections.social.api.SocialNetworkUser;
@@ -17,11 +16,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 
  * This will be an implementation of
  * {@link SocialNetworkUser}:
  * 1) complete the definition of the methods by following the suggestions
  * included in the comments below.
- *
+ * 
  * @param <U>
  *            Specific {@link User} type
  */
@@ -34,9 +34,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * Define any necessary field
      *
      * In order to save the people followed by a user organized in groups, adopt
-     * a generic-type Map:
-     *
-     * think of what type of keys and values would best suit the requirements
+     * a generic-type Map:  think of what type of keys and values would best suit the requirements
      */
 
     /*

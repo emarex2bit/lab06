@@ -1,7 +1,6 @@
 /**
- *
+ * 
  */
-
 package it.unibo.collections.social;
 
 import it.unibo.collections.social.api.SocialNetworkUser;
@@ -14,12 +13,10 @@ import java.util.Collection;
 /**
  * This is going to act as a test for
  * {@link SocialNetworkUserImpl}.
- *
- * <p>
+ * 
  * 1) Complete the test as per comments below
- *
- * <p>
- * 2) Run it: every test must return true.
+ * 
+ * 2) Run it: every test must return true. 
  */
 public final class TestSocialNetworkUser {
 
@@ -31,24 +28,24 @@ public final class TestSocialNetworkUser {
     /**
      * This is going to act as a test for
      * {@link SocialNetworkUserImpl}.
-     *
+     * 
      * @param args
      *            ignored
      */
     public static void main(final String... args) {
         /*
-         * create 5 social network users (SocialNetworkUser):
-         *
+         * Create 5 social network users (SocialNetworkUser):
+         * 
          * * Kevin Bacon, kbacon, 56
-         *
+         * 
          * * Denzel Washington, dwashington, 59
-         *
+         * 
          * * Malcom Gladwell, mgladwell, 51
-         *
+         * 
          * * Nicholas Taleb, ntaleb, 54
-         *
+         * 
          * And one regular UserImpl (User)
-         *
+         * 
          * * Adam Smith, asmith, (no age)
          */
         final SocialNetworkUser<User> kbacon = null; //TODO
@@ -73,7 +70,7 @@ public final class TestSocialNetworkUser {
         final Collection<User> mgladFriends = mgladwell.getFollowedUsersInGroup("Close friends");
         assertTrue("M Gladwell has not set yet any group called \"Close friends\"", mgladFriends.isEmpty());
         final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup(WRITERS);
-        assertTrue("Denzel has 2 followed people in group \"" + WRITERS + "\"", dwashFriends.size() == 2);
+        assertTrue("Denzel has 2 followed people in group \"" + WRITERS + "\"",  dwashFriends.size() == 2);
         /*
          * Adding another friend to Denzel's "writers" group
          */
