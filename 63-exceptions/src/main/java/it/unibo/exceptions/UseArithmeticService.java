@@ -17,11 +17,12 @@ import static java.lang.Double.parseDouble;
 public final class UseArithmeticService {
 
     private static final PrintStream LOG = System.out;
+    private static final String N_1 = Integer.toString(1);
+    private static final String N_2 = Integer.toString(2);
 
     private UseArithmeticService() { }
 
     /**
-     *
      * @param args unused
      */
     public static void main(final String[] args) {
@@ -32,14 +33,14 @@ public final class UseArithmeticService {
             LOG.println("Correct: a service with 100% failures cannot be created.");
         }
         final NetworkComponent server = new ServiceBehindUnstableNetwork();
-        assertComputeResult(server, "1", "1");
-        assertComputeResult(server, "2", "1", PLUS, "1");
-        assertComputeResult(server, "9", "1", PLUS, "2", TIMES, "4.0");
-        assertComputeResult(server, "0", "1", PLUS, "2", DIVIDED, "4.0", MINUS, "1.5");
-        assertThrowsException(server, IllegalArgumentException.class, "1", "power", "2");
-        assertThrowsException(server, IllegalArgumentException.class, "1", TIMES, "NaN");
-        assertThrowsException(server, IllegalStateException.class, "1", TIMES, PLUS);
-        assertThrowsException(server, IllegalStateException.class, "1", TIMES, PLUS, "2");
+        assertComputeResult(server, N_1, N_1);
+        assertComputeResult(server, N_2, N_1, PLUS, N_1);
+        assertComputeResult(server, "9", N_1, PLUS, N_2, TIMES, "4.0");
+        assertComputeResult(server, "0", N_1, PLUS, N_2, DIVIDED, "4.0", MINUS, "1.5");
+        assertThrowsException(server, IllegalArgumentException.class, N_1, "power", N_2);
+        assertThrowsException(server, IllegalArgumentException.class, N_1, TIMES, "NaN");
+        assertThrowsException(server, IllegalStateException.class, N_1, TIMES, PLUS);
+        assertThrowsException(server, IllegalStateException.class, N_1, TIMES, PLUS, N_2);
     }
 
     private static void retrySendOnNetworkError(final NetworkComponent server, final String message) {
@@ -90,7 +91,9 @@ public final class UseArithmeticService {
         try {
             assertComputeResult(server, null, operation);
             throw new AssertionError(expected.getSimpleName() + " expected, but no exception was thrown");
+            // CHECKSTYLE: IllegalCatch OFF
         } catch (final Throwable error) { // NOPMD **never** catch generic exceptions in real life
+            // CHECKSTYLE: IllegalCatch ON
             assertExceptionIs(expected, error);
         }
     }

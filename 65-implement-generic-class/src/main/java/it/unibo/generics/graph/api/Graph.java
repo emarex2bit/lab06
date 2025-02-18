@@ -11,7 +11,7 @@ public interface Graph<N> {
 
     /**
      * Adds a node: nothing happens if node is null or already there.
-     * 
+     *
      * @param node
      *            the node to add
      */
@@ -19,7 +19,7 @@ public interface Graph<N> {
 
     /**
      * Adds an edge: nothing happens if source or target are null.
-     * 
+     *
      * @param source
      *            starting node
      * @param target
@@ -34,7 +34,7 @@ public interface Graph<N> {
 
     /**
      * Returns all the nodes directly targeted from a node.
-     * 
+     *
      * @param node
      *            the node
      * @return all the nodes directly targeted from the passed node
@@ -43,7 +43,7 @@ public interface Graph<N> {
 
     /**
      * Gets one sequence of nodes connecting source to target.
-     * 
+     *
      * @param source
      *            the source node
      * @param target
