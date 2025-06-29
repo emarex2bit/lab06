@@ -28,7 +28,7 @@ public final class ArithmeticUtil {
                 return new NumberFormatException(data + " is not a finite number");
             }
         } catch (final NumberFormatException e) {
-            return e; // NOPMD
+            return e;
         }
     }
 }
