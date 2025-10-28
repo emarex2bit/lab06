@@ -26,6 +26,8 @@ Notice that the blocks that used to catch `IOException` still work.
 
 Modify `ServiceBehindUnstableNetwork.sendData` in such a way that,
 instead of printing, throws an IllegalArgumentException with the same message.
+The exception must be thrown if the operator name is not among the accepted keywords,
+or if the provided string does not conform to a valid number.
 
 **Note:** the newly thrown exception must *preserve* the stacktrace of the original
 `NumberFormatException` (which must be set as exception cause).
