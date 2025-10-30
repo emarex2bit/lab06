@@ -4,12 +4,11 @@
 
 package it.unibo.collections.social;
 
+import java.util.Collection;
+
 import it.unibo.collections.social.api.SocialNetworkUser;
 import it.unibo.collections.social.api.User;
 import it.unibo.collections.social.impl.SocialNetworkUserImpl;
-import it.unibo.collections.social.impl.UserImpl;
-
-import java.util.Collection;
 
 /**
  * This is going to act as a test for

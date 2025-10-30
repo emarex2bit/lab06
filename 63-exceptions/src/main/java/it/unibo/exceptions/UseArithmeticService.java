@@ -1,15 +1,15 @@
 package it.unibo.exceptions;
 
-import it.unibo.exceptions.fakenetwork.api.NetworkComponent;
-import it.unibo.exceptions.fakenetwork.impl.ServiceBehindUnstableNetwork;
-
-import java.io.PrintStream;
-
 import static it.unibo.exceptions.arithmetic.ArithmeticService.DIVIDED;
 import static it.unibo.exceptions.arithmetic.ArithmeticService.MINUS;
 import static it.unibo.exceptions.arithmetic.ArithmeticService.PLUS;
 import static it.unibo.exceptions.arithmetic.ArithmeticService.TIMES;
 import static java.lang.Double.parseDouble;
+
+import java.io.PrintStream;
+
+import it.unibo.exceptions.fakenetwork.api.NetworkComponent;
+import it.unibo.exceptions.fakenetwork.impl.ServiceBehindUnstableNetwork;
 
 /**
  * Tests the service.
@@ -51,7 +51,9 @@ public final class UseArithmeticService {
         try {
             server.sendData(message);
         } catch (Exception e) {
-            System.out.println("Error while sending message");
+
+            throw new IllegalStateException("Error while sending message", e);
+        
         }
     }
 
@@ -64,7 +66,9 @@ public final class UseArithmeticService {
         try {
             ret = server.receiveResponse();
         } catch (Exception e) {
-            System.out.println("Error while retrieving information");
+            
+            throw new IllegalStateException("Error while retrieving information", e);
+
         }
         return ret;
     }

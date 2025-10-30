@@ -1,7 +1,6 @@
 package it.unibo.exceptions.fakenetwork.impl;
-import it.unibo.exceptions.arithmetic.ArithmeticService;
-import it.unibo.exceptions.fakenetwork.api.NetworkComponent;
-import it.unibo.exceptions.fakenetwork.api.NetworkException;
+import static it.unibo.exceptions.arithmetic.ArithmeticService.KEYWORDS;
+import static it.unibo.exceptions.arithmetic.ArithmeticUtil.nullIfNumberOrException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +9,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
-import static it.unibo.exceptions.arithmetic.ArithmeticService.KEYWORDS;
-import static it.unibo.exceptions.arithmetic.ArithmeticUtil.nullIfNumberOrException;
+import it.unibo.exceptions.arithmetic.ArithmeticService;
+import it.unibo.exceptions.fakenetwork.api.NetworkComponent;
+import it.unibo.exceptions.fakenetwork.api.NetworkException;
 
 /**
  * A {@link NetworkComponent} mimicking an unstable network.
@@ -67,7 +67,7 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
              */
             final var message = data + " is not a valid keyword (allowed: " + KEYWORDS + "), nor is a number";
             commandQueue.clear();
-            throw new IllegalStateException(message);
+            throw new IllegalStateException(message, exceptionWhenParsedAsNumber);
         }
     }
 
