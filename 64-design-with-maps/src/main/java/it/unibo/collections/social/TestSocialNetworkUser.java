@@ -9,6 +9,7 @@ import java.util.Collection;
 import it.unibo.collections.social.api.SocialNetworkUser;
 import it.unibo.collections.social.api.User;
 import it.unibo.collections.social.impl.SocialNetworkUserImpl;
+import it.unibo.collections.social.impl.UserImpl;
 
 /**
  * This is going to act as a test for
@@ -50,11 +51,11 @@ public final class TestSocialNetworkUser {
          *
          * * Adam Smith, asmith, (no age)
          */
-        final SocialNetworkUser<User> kbacon = null; //TODO
-        final SocialNetworkUser<User> dwashington = null; //TODO
-        final SocialNetworkUser<User> mgladwell = null; //TODO
-        final SocialNetworkUser<User> ntaleb = null; //TODO
-        final User asmith = null; //TODO
+        final SocialNetworkUser<User> kbacon = new SocialNetworkUserImpl<>("Kevin", "Bacon", "kbacon", 56);
+        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>("Denzel", "Washington", "dwashington", 59);
+        final SocialNetworkUser<User> mgladwell = new SocialNetworkUserImpl<>("Malcom", "Gladwell", "mgladwell", 51);
+        final SocialNetworkUser<User> ntaleb = new SocialNetworkUserImpl<>("Nicholas", "Taleb", "ntaleb", 54);
+        final User asmith = new UserImpl("Adam", "Smith", "asmith");
         /*
          * Make people follow each other
          */
@@ -76,11 +77,13 @@ public final class TestSocialNetworkUser {
         /*
          * Adding another friend to Denzel's "writers" group
          */
+        
         dwashFriends.add(asmith);
         /*
          * The above operation *MUST* have no effect on Denzel's profile itself:
          * STILL TWO PEOPLE in denzel's group called writers
          */
+        
         assertTrue(
             "Denzel has STILL 2 followed people in group \"" + WRITERS + "\"",
             dwashington.getFollowedUsersInGroup(WRITERS).size() == 2

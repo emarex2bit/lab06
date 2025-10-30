@@ -4,8 +4,11 @@
 
 package it.unibo.collections.social.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.unibo.collections.social.api.SocialNetworkUser;
 import it.unibo.collections.social.api.User;
@@ -33,6 +36,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      *
      * think of what type of keys and values would best suit the requirements
      */
+    Map<String, ArrayList<U>> followed; 
 
     /*
      * [CONSTRUCTORS]
@@ -45,6 +49,8 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * - username
      * - age and every other necessary field
      */
+
+
     /**
      * Builds a user participating in a social network.
      *
@@ -59,13 +65,17 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      *            application
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
-        super(null, null, null, 0);
+        super(name, surname, user, userAge);
+        followed = new HashMap<>();
     }
 
     /*
      * 2) Define a further constructor where the age defaults to -1
      */
-
+    public SocialNetworkUserImpl(final String name, final String surname, final String user) {
+        super(name, surname, user, -1);
+        followed = new HashMap<>();
+    }
     /*
      * [METHODS]
      *
@@ -73,6 +83,19 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
+        if(followed.containsKey(circle)){
+            var lF = followed.get(circle);
+            if(lF.contains(user)){
+                return true;
+            }else{
+                lF.add(user);
+            }
+        }
+        else{
+            var toAdd = new ArrayList<U>();
+            toAdd.add(user);
+            followed.put(circle, toAdd);
+        }
         return false;
     }
 
@@ -83,11 +106,17 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+        if(!followed.containsKey(groupName))
+            return new ArrayList<U>();
+        return new ArrayList<>(followed.get(groupName));
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
+        ArrayList<U> followers = new ArrayList<>();
+        for (ArrayList<U> users : followed.values()) {
+            followers.addAll(users);
+        }
+        return followers;
     }
 }
