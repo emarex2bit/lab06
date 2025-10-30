@@ -1,7 +1,10 @@
 package it.unibo.collections;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Example class using {@link List} and {@link Map}.
@@ -21,19 +24,31 @@ public final class UseListsAndMaps {
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
          */
+        ArrayList<Integer> arr = new ArrayList<>();
+        for (Integer i = 1000; i < 2000; i++) {
+            arr.add(i);
+        }
         /*
          * 2) Create a new LinkedList<Integer> and, in a single line of code
          * without using any looping construct (for, while), populate it with
          * the same contents of the list of point 1.
          */
+        LinkedList<Integer> ll = new LinkedList<>(arr);
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
          * (Suggestion: use a temporary variable)
          */
+        var first = arr.get(0);
+        arr.set(0, arr.getLast());
+        arr.set(arr.size() - 1, first);
         /*
          * 4) Using a single for-each, print the contents of the arraylist.
          */
+
+         for (Integer e : arr) {
+            System.out.println(e);
+         }
         /*
          * 5) Measure the performance of inserting new elements in the head of
          * the collection: measure the time required to add 100.000 elements as
@@ -41,6 +56,39 @@ public final class UseListsAndMaps {
          * using the previous lists. In order to measure times, use as example
          * TestPerformance.java.
          */
+        long time = System.nanoTime();
+        for (Integer i = 0; i < 100_000; i++) {
+            arr.addFirst(i);
+        }
+
+        time = System.nanoTime() - time;
+        var millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println(// NOPMD
+            "Adding "
+                + "100_000"
+                + " Integet into ArrayList took "
+                + time
+                + "ns ("
+                + millis
+                + "ms)"
+        );
+
+        time = System.nanoTime();
+        for (Integer i = 0; i < 100_000; i++) {
+            ll.addFirst(i);
+        }
+
+        time = System.nanoTime() - time;
+        millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println(// NOPMD
+            "Adding "
+                + "100_000"
+                + " Integet into LinkedList took "
+                + time
+                + "ns ("
+                + millis
+                + "ms)"
+        );
         /*
          * 6) Measure the performance of reading 1000 times an element whose
          * position is in the middle of the collection for both ArrayList and
