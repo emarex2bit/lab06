@@ -1,6 +1,6 @@
 package it.unibo.collections;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +66,7 @@ public final class UseListsAndMaps {
         System.out.println(// NOPMD
             "Adding "
                 + "100_000"
-                + " Integet into ArrayList took "
+                + " Integer into ArrayList took "
                 + time
                 + "ns ("
                 + millis
@@ -83,7 +83,7 @@ public final class UseListsAndMaps {
         System.out.println(// NOPMD
             "Adding "
                 + "100_000"
-                + " Integet into LinkedList took "
+                + " Integer into LinkedList took "
                 + time
                 + "ns ("
                 + millis
@@ -95,6 +95,41 @@ public final class UseListsAndMaps {
          * LinkedList, using the collections of point 5. In order to measure
          * times, use as example TestPerformance.java.
          */
+        var middleArr = arr.size() / 2;
+        time = System.nanoTime();
+        
+        for (Integer i = 0; i < 1000; i++) {
+            arr.get(middleArr);
+        }
+
+        time = System.nanoTime() - time;
+        millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println(// NOPMD
+            "Reading "
+                + "1000 times"
+                + " middle element of ArrayList "
+                + time
+                + "ns ("
+                + millis
+                + "ms)"
+        );
+        var middleLl = ll.size() / 2;
+        time = System.nanoTime();
+        for (Integer i = 0; i < 1000; i++) {
+            ll.get(middleLl);
+        }
+
+        time = System.nanoTime() - time;
+        millis = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println(// NOPMD
+            "Reading "
+                + "1000 times"
+                + " middle element of LinkedList "
+                + time
+                + "ns ("
+                + millis
+                + "ms)"
+        );
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
@@ -111,8 +146,23 @@ public final class UseListsAndMaps {
          *
          * Oceania -> 38,304,000
          */
+
+        HashMap<String, Long> map = new HashMap<>();
+        map.put("Africa", 1_110_635_000L);
+        map.put("Americas", 972_005_000L);
+        map.put("Antarctica", 0L);
+        map.put("Asia", 4_298_723_000L);
+        map.put("Europe", 742_452_000L);
+        map.put("Oceania", 38_304_000L);
+
+
         /*
          * 8) Compute the population of the world
          */
+        Long sum = 0L;
+        for (Long i : map.values()) {
+            sum += i;
+        }
+        System.out.println("Population computed => " + sum);
     }
 }
